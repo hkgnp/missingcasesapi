@@ -19,7 +19,7 @@ To post missing persons' information, use the above endpoint with the following 
 
 `GET /reports`
 
-To get the list of missing persons posted to the database, use the above endpoint with the same paramters.
+To get the list of missing persons posted to the database, use the above endpoint with the same parameters.
 
 ```
 {
