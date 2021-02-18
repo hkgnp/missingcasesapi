@@ -1,8 +1,6 @@
 const express = require('express');
-require('dotenv').config();
 const mongoUrl = process.env.MONGO_URL;
 const MongoUtil = require('./MongoUtil');
-const ObjectId = require('mongodb').ObjectId;
 
 // Add in the missing requires for the API to work
 const cors = require('cors');
