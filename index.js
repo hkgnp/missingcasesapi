@@ -35,6 +35,15 @@ async function main() {
     });
     res.send(result);
   });
+
+  app.delete('/report/:post_id', async (req, res) => {
+    let id = req.params.post_id;
+    let result = await db.collection('reports').deleteOne({
+      _id: ObjectId(id),
+    });
+
+    res.send(result);
+  });
 }
 
 main();
