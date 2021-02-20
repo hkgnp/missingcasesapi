@@ -47,6 +47,6 @@ let deletePost = async (postId) => {
 
 // Button to delete case
 document.querySelector('#delete_btn').addEventListener('click', async () => {
-  console.log(document.querySelector('#deletecase').value);
-  console.log(deletePost(document.querySelector('#deletecase').value));
+  deletePost(document.querySelector('#deletecase').value);
+  location.reload();
 });
