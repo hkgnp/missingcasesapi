@@ -15,6 +15,9 @@ document.querySelector('#submit_btn').addEventListener('click', async () => {
     location: location,
     details: details,
   });
+
+  // Reload page
+  location.reload();
 });
 
 // Retrieve and Delete Missing Persons
@@ -22,22 +25,49 @@ window.addEventListener('DOMContentLoaded', async () => {
   // Retrieve
   let res = await axios.get(`${baseUrl}/reports`);
 
+  // Closure method
+  let displayDiv = document.querySelector('#displaycases');
   for (let p of res.data) {
+    let pElement = document.createElement('p');
     let html = `
-      <div class="card mb-3" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title" id="missingname">Name: ${p.name}</h5>
-            <p class="card-text" id="missingdate">Date: ${p.date}</p>
-            <p class="card-text" id="missinglocation">Location: ${p.location}</p>
-            <p class="card-text" id="missingdetails">Details: ${p.details}</p>
-            <p class="card-text" id="missingID">ID: ${p._id}</p>
-        </div>
-      </div>
-    `;
+          <div class="card mb-3" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title" id="missingname">Name: ${p.name}</h5>
+              <p class="card-text" id="missingdate">Date: ${p.date}</p>
+              <p class="card-text" id="missinglocation">Location: ${p.location}</p>
+              <p class="card-text" id="missingdetails">Details: ${p.details}</p>
+              <p class="card-text" id="missingID">ID: ${p._id}</p>
+          </div>
+          <button class="btn btn-danger">Delete</button>
+        </div>  
+      `;
 
-    // Render
-    document.querySelector('#displaycases').innerHTML += html;
+    pElement.innerHTML = html;
+
+    pElement.querySelector('button').addEventListener('click', async () => {
+      await axios.delete(`${baseUrl}/report/${p._id}`);
+      location.reload();
+    });
+    displayDiv.appendChild(pElement);
   }
+
+  // Conventional method
+  // for (let p of res.data) {
+  //   let html = `
+  // <div class="card mb-3" style="width: 18rem;">
+  //   <div class="card-body">
+  //     <h5 class="card-title" id="missingname">Name: ${p.name}</h5>
+  //       <p class="card-text" id="missingdate">Date: ${p.date}</p>
+  //       <p class="card-text" id="missinglocation">Location: ${p.location}</p>
+  //       <p class="card-text" id="missingdetails">Details: ${p.details}</p>
+  //       <p class="card-text" id="missingID">ID: ${p._id}</p>
+  //   </div>
+  // </div>
+  //   `;
+
+  // Render
+  // document.querySelector('#displaycases').innerHTML += html;
+  // }
 });
 
 // // Function Delete
@@ -52,8 +82,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 // });
 
 // Can also use this
-document.querySelector('#delete_btn').addEventListener('click', async () => {
-  let postId = document.querySelector('#deletecase').value;
-  await axios.delete(`${baseUrl}/report/${postId}`);
-  location.reload();
-});
+// document.querySelector('#delete_btn').addEventListener('click', async () => {
+//   let postId = document.querySelector('#deletecase').value;
+//   await axios.delete(`${baseUrl}/report/${postId}`);
+//   location.reload();
+// });
