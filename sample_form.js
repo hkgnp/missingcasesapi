@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 // };
 
 // // Button to delete case
-// document.querySelector('#delete_btn').addEventListener('click', async () => {
+// document.querySelector('#delete_btn').addEventListener('click', () => {
 //   deletePost(document.querySelector('#deletecase').value);
 // });
 
