@@ -43,10 +43,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 // Function Delete
 let deletePost = async (postId) => {
   await axios.delete(`${baseUrl}/report/${postId}`);
+  location.reload();
 };
 
 // Button to delete case
 document.querySelector('#delete_btn').addEventListener('click', async () => {
   deletePost(document.querySelector('#deletecase').value);
-  location.reload();
 });
