@@ -1,6 +1,6 @@
 # missingcasesapi
 
-The base url for this API is at: `https://floating-forest-98452.herokuapp.com`
+The base url for this API is at: `https://missing-cases-api.herokuapp.com`
 
 # Endpoints
 
